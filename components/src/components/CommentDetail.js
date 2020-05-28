@@ -1,25 +1,24 @@
 import React from 'react';
-import faker from 'faker';
 
 function getTime() {
     return (new Date()).toLocaleTimeString()
 }
 
-const CommentDetail = () => {
+const CommentDetail = (props) => {
     return (
         <div className="comment" >
                 <a href="/" className="avatar">
-                    <img alt="avatar" src={faker.image.avatar()}/>
+                    <img alt="avatar" src={props.avatar}/>
                 </a>
                 <div className="content">
-                    <a href="/" clasName="author">
-                        {faker.name.firstName()}
+                    <a href="/" className="author">
+                        {props.author}
                     </a>
                     <div className="metadata">
                         <span className="date">{getTime()}</span>    
                     </div>
                     <div className="text">
-                        {faker.lorem.text()}some text here...
+                        {props.content}
                     </div>
                 </div>
             </div>
