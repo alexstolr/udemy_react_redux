@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './components/SeasonDisplay'
+import Spinner from './components/Spinner';
 
 class App extends React.Component {
     state = { lat: null, errorMessage: null};
@@ -26,12 +27,15 @@ class App extends React.Component {
         console.log('component will unmount');
     }
 
+    renderContent(){
+        // return <SeasonDisplay lat={this.state.lat} errorMessage={this.state.errorMessage}/>
+        if(this.state.lat || this.state.errorMessage) return <SeasonDisplay lat={this.state.lat} errorMessage={this.state.errorMessage}/>
+        else return <Spinner message="Awaiting for location data"/>
+    }
+
 
     render(){
-
-        // return <div>{this.state.errorMessage || `Latitude: ${this.state.lat}`}</div>
-        // return <SeasonDisplay lat={this.state.errorMessage || this.state.lat}/>
-        return <SeasonDisplay lat={this.state.lat} errorMessage={this.state.errorMessage}/>
+        return <div className="border red">{this.renderContent()}</div>;
     }
 }
 
